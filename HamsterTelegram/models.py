@@ -23,3 +23,4 @@ class SpinHistory(db.Model):
 
     def __repr__(self):
         return f'<Spin {self.token_type}: {self.prize_amount}>'
+        

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Add splash screen -->
+<div id="gameSplash" class="game-splash">
+    <button class="btn btn-outline-primary mt-4" onclick="startGame()">
+        <i class="bi bi-play-fill"></i> Enter MetaVerse
+    </button>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Spin & Win</h5>
+                <div class="wheel-container">
+                    <canvas id="wheelCanvas" width="300" height="300"></canvas>
+                    <button class="btn btn-outline-primary mt-3" id="spinBtn">
+                        <i class="bi bi-arrow-repeat"></i> Spin
+                    </button>
+                </div>
+                <div class="mt-3">
+                    <p class="text-white-50">
+                        Spin to win MetaRush Coins or rare MetaVerse Token jackpots!
+                        <br>
+                        <small>Chance to win 10-50 MetaRush Coins or 100-300 MetaVerse Tokens (Rare)</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">MetaVerse Go</h5>
+                <canvas id="hamsterCanvas" width="800" height="400"></canvas>
+                <div class="mt-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p class="mb-2 text-primary">Score: <span id="hamsterScore" class="text-white">0</span></p>
+                            <p class="mb-2 text-primary">High Score: <span id="hamsterHighScore" class="text-white">0</span></p>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button class="btn btn-outline-primary" id="startHamster">
+                                <i class="bi bi-play-fill"></i> Start Game
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <h6 class="text-primary">How to Play:</h6>
+                    <p class="text-white-50">Navigate through the MetaVerse collecting power-ups and avoiding obstacles. Use arrow keys or touch controls!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='js/hamster.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wheel.js') }}"></script>
+<script>
+function startGame() {
+    document.getElementById('gameSplash').classList.add('hide');
+}
+</script>
+{% endblock %}

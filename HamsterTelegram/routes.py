@@ -1,23 +1,19 @@
 from flask import request, jsonify
-from app import app, db
-from models import User
-from datetime import datetime
+from models import db, User
 
-@app.route('/api/daily-login', methods=['POST'])
-def daily_login():
-    data = request.json
-    address = data.get('address')
+def register_routes(app):
+    @app.route('/')
+    def home():
+        return "Welcome to HamsterTelegram API!"
 
-    if not address:
-        return jsonify({'error': 'Missing address'}), 400
-
-    user = User.query.filter_by(address=address).first()
-    if not user:
-        user = User(address=address)
-        db.session.add(user)
-
-    user.last_login = datetime.utcnow()
-    user.login_streak += 1
-    db.session.commit()
-
-    return jsonify({'message': 'Login successful', 'streak': user.login_streak})
+    @app.route('/api/daily-login', methods=['POST'])
+    def daily_login():
+        try:
+            data = request.json
+            user = User.query.filter_by(username=data['username']).first()
+            if user:
+                return jsonify({"message": f"Welcome back, {user.username}!"}), 200
+            else:
+                return jsonify({"error": "User not found"}), 404
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500

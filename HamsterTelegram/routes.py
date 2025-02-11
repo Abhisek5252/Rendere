@@ -4,7 +4,7 @@ from models import db, User
 def register_routes(app):
     @app.route('/')
     def home():
-        return "Welcome to HamsterTelegram API!"
+        return "Welcome to Metaverse API!", 200  # Ensure this works
 
     @app.route('/api/daily-login', methods=['POST'])
     def daily_login():

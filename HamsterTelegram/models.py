@@ -1,7 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-db = SQLAlchemy()  # Define db here
+# Define db here instead of importing from app.py
+db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,4 +24,3 @@ class SpinHistory(db.Model):
 
     def __repr__(self):
         return f'<Spin {self.token_type}: {self.prize_amount}>'
-        
